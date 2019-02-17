@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(180, 25, 25);
+    font-family: 'Fahkwang', sans-serif;
+    color: gold;
+}
+header {
+    float: left;
+    margin-right: 20px;
+    padding: 10px;
+    width: 200px;
+    height: 95vh;
+    background-color: green;
+}
+label {
+    display: inline-block;
+    margin: 10px;
+}
+a {
+    text-decoration: none;
+    color: gold;
+}
+/* button:hover {
+    background: red;
+} */
+img {
+    height: 300px;
+    border-radius: 10%;
+}
+div {
+    text-transform: capitalize;
+}
+#play-mat {
+    background-color: gray;
+    width: 1000px;
+    height: 750px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}

@@ -1,17 +1,19 @@
 import sessionStorage from './utils/session-storage.js';
 const animalArr = ['deer', 'gourd', 'chicken', 'fish', 'crab', 'shrimp'];
-const newPlayerObj = sessionStorage.get('newPlayer');
+
+const currentPlayer = sessionStorage.get('currentPlayer');
 
 const player = {
-    name: newPlayerObj.name,
-    totalMoney: newPlayerObj.startMoney,
-    bets: animalArr.reduce((animals, animal) => {
-        animals[animal] = '';
-        return animals;
+    name: currentPlayer.name,
+    id: currentPlayer.id,
+    totalMoney: currentPlayer.totalMoney,
+    bets: currentPlayer.bets ? currentPlayer.bets : animalArr.reduce((animalBetsObj, animal) => {
+        animalBetsObj[animal] = '';
+        return animalBetsObj;
     }, {}),
     get totalBet() { 
-        return Object.values(this.bets).map(Number).reduce((total, bet) => {
-            return total + bet;
+        return Object.values(this.bets).map(Number).reduce((total, bet) => { 
+            return total + bet; 
         });
     },
     get currentMoney() { return this.totalMoney - this.totalBet; }

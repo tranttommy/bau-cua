@@ -2,13 +2,16 @@ import sessionStorage from './utils/session-storage.js';
 
 const profileForm = document.getElementById('profile-form');
 
+console.log('it works in new player');
+
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const formDaddy = new FormData(profileForm);
-    const profileObj = {
+    const player = {
         name: formDaddy.get('name'),
-        startMoney: formDaddy.get('start-money')
+        id: Date.now(),
+        totalMoney: formDaddy.get('start-money'),
     };
-    sessionStorage.store('newPlayer', profileObj);
+    sessionStorage.store('currentPlayer', player);
     window.location = './play.html';
 });

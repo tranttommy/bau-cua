@@ -49,7 +49,7 @@ const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', function(event) {
     event.preventDefault();
     localStorage.store('playerList', player);
-    location = './index.html';
+    window.location = './index.html';
 });
 
 function display() {

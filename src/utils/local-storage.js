@@ -9,7 +9,18 @@ function getData(key) {
 
 function storeData(key, object) {
     const array = getData(key);
-    array.push(object);
+    if(array.length === 0) {
+        array.push(object);
+    } else {
+        for(let i = 0; i < array.length; i++) {
+            if(array[i].id === object.id) {
+                array[i] = object;
+                break;
+            } else {
+                array.push(object);
+            }
+        }
+    }
     const json = JSON.stringify(array);
     window.localStorage[key] = json;
 }

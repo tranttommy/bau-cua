@@ -1,10 +1,16 @@
 function getData(key) {
+    let array = [];
     const json = localStorage[key];
-    return JSON.parse(json);
+    if(json) {
+        array = JSON.parse(json);
+    }
+    return array;
 }
 
 function storeData(key, object) {
-    const json = JSON.stringify(object);
+    const array = getData(key);
+    array.push(object);
+    const json = JSON.stringify(array);
     window.localStorage[key] = json;
 }
 

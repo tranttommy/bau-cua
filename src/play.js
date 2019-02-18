@@ -1,8 +1,8 @@
 import sessionStorage from './utils/session-storage.js';
+import localStorage from './utils/local-storage.js';
+
 const animalArr = ['deer', 'gourd', 'chicken', 'fish', 'crab', 'shrimp'];
-
 const currentPlayer = sessionStorage.get('currentPlayer');
-
 const player = {
     name: currentPlayer.name,
     id: currentPlayer.id,
@@ -21,15 +21,6 @@ const player = {
 
 display();
 
-function display() {
-    document.getElementById('player-name-display').textContent = player.name;
-    document.getElementById('current-money-display').textContent = player.currentMoney;
-    document.getElementById('total-bet-display').textContent = player.totalBet;
-    for(let i = 0; i < animalArr.length; i++) {
-        document.getElementById(animalArr[i] + '-bet').value = player.bets[animalArr[i]];
-    }
-}
-
 const playForm = document.getElementById('play-form');
 
 playForm.addEventListener('change', function(event) {
@@ -42,7 +33,8 @@ playForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const rollResults = ['dice1', 'dice2', 'dice3'].map(rollDice);
     rollResults.forEach(function(animal, i) {
-        document.getElementById('dice-' + i).textContent = animal;
+        const diceEl = document.getElementById('dice-' + i);
+        diceEl.src = './assets/' + animal + '.jpg';
         winnings(animal);
     });
     rollResults.forEach(function(animal) {
@@ -51,6 +43,23 @@ playForm.addEventListener('submit', function(event) {
     losses();
     display();
 });
+
+const saveButton = document.getElementById('save-button');
+
+saveButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    localStorage.store('playerList', player);
+    location = './index.html';
+});
+
+function display() {
+    document.getElementById('player-name-display').textContent = player.name;
+    document.getElementById('current-money-display').textContent = player.currentMoney;
+    document.getElementById('total-bet-display').textContent = player.totalBet;
+    for(let i = 0; i < animalArr.length; i++) {
+        document.getElementById(animalArr[i] + '-bet').value = player.bets[animalArr[i]];
+    }
+}
 
 function makeBet() {
     const formDaddy = new FormData(playForm);

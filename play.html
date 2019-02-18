@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1><a href='/'>Bau Cua</a></h1>
+        <h1><a href='/'></a>Bau Cua</a></h1>
         <section>
             <h3>Name: <span id="player-name-display"></span></h3>
             <h3>Current: $<span id="current-money-display"></span></h3>
@@ -67,11 +67,14 @@
         </form>
         <section>
             Results:
-            <div id="dice-0">Chicken</div>
-            <div id="dice-1">Gourd</div>
-            <div id="dice-2">Fish</div>
+            <img id="dice-0" class="reveal-dice"></img>
+            <img id="dice-1" class="reveal-dice"></img>
+            <img id="dice-2" class="reveal-dice"></img>
         </section>
     </main>
+    <footer>
+        <button id="save-button">Save</button>
+    </footer>
     <script type="module" src="/src/play.js"></script>
 </body>
 </html>

@@ -9,14 +9,14 @@ function getData(key) {
 
 function storeData(key, object) {
     const array = getData(key);
-    if(array.length === 0) {
+    if(!array.length) {
         array.push(object);
     } else {
         for(let i = 0; i < array.length; i++) {
             if(array[i].id === object.id) {
                 array[i] = object;
                 break;
-            } else {
+            } else if(i === array.length - 1) {
                 array.push(object);
             }
         }

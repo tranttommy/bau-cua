@@ -31,16 +31,17 @@ playForm.addEventListener('change', function(event) {
 
 playForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    const rollResults = ['dice1', 'dice2', 'dice3'].map(rollDice);
+
+    const rollResults = ['', '', ''].map(rollDice);
     rollResults.forEach(function(animal, i) {
         const diceEl = document.getElementById('dice-' + i);
         diceEl.src = './assets/' + animal + '.jpg';
-        winnings(animal);
+        win(animal);
     });
     rollResults.forEach(function(animal) {
         player.bets[animal] = '';
     });
-    losses();
+    lose();
     display();
 });
 
@@ -74,11 +75,11 @@ function rollDice() {
     return animalArr[result];
 }
 
-function winnings(animal) {
+function win(animal) {
     player.totalMoney = Number(player.totalMoney) + (Number(player.bets[animal]));
 }
 
-function losses() {
+function lose() {
     animalArr.forEach(function(animal) {
         player.totalMoney = Number(player.totalMoney) - Number(player.bets[animal]);
         player.bets[animal] = '';

@@ -1,9 +1,6 @@
 import sessionStorage from './utils/session-storage.js';
 
 const profileForm = document.getElementById('profile-form');
-
-console.log('it works in new player');
-
 profileForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const formDaddy = new FormData(profileForm);
